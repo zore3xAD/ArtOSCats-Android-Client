@@ -16,6 +16,8 @@ class CatsListPresenter: MvpPresenter<ICatListView>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { viewState.showCats(it) },
-                        { viewState.showMessage(it.localizedMessage) })
+                        { viewState.showMessage(it.localizedMessage) },
+                        { viewState.hideProgress()},
+                        { viewState.showProgress()})
     }
 }

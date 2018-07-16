@@ -1,9 +1,12 @@
 package com.android.zore3x.artoscats.activity
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import com.android.zore3x.artoscats.R
 import com.android.zore3x.artoscats.adapter.CatAdapter
@@ -47,11 +50,11 @@ class CatsListActivity : MvpAppCompatActivity(), ICatListView {
     }
 
     override fun showProgress() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        progressBar.visibility = VISIBLE
     }
 
     override fun hideProgress() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        progressBar.visibility = GONE
     }
 
 }
