@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ArtOS cats</string>
+    <string name="title_activity_cats_list">CatsListActivity</string>
 </resources>
