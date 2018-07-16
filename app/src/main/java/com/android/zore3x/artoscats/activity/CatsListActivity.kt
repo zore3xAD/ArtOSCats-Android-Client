@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
@@ -34,7 +35,11 @@ class CatsListActivity : MvpAppCompatActivity(), ICatListView {
         fab.setOnClickListener { view ->
             startActivity(EditableCatActivity.getIntent(applicationContext))
         }
-
+        adapter.setOnClickListener(object : CatAdapter.CatClickListener {
+            override fun OnClick(view: View, position: Int) {
+                startActivity(EditableCatActivity.getIntent(applicationContext, position))
+            }
+        })
         catList_recyclerView.layoutManager = LinearLayoutManager(applicationContext)
         catList_recyclerView.adapter = adapter
 

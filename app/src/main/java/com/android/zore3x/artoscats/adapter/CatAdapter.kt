@@ -10,12 +10,21 @@ import kotlinx.android.synthetic.main.card_item_cats.view.*
 
 class CatAdapter : RecyclerView.Adapter<CatAdapter.CatViewHolder>() {
 
+    interface CatClickListener {
+        fun OnClick(view: View, position: Int)
+    }
+
+    var catClickListener: CatClickListener? = null
     var data: MutableList<Cat> = ArrayList()
         set(value) {
             data.clear()
             data.addAll(value)
             notifyDataSetChanged()
         }
+
+    fun setOnClickListener(listener: CatClickListener) {
+        this.catClickListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CatViewHolder =
         CatViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_item_cats, parent, false))
@@ -28,7 +37,15 @@ class CatAdapter : RecyclerView.Adapter<CatAdapter.CatViewHolder>() {
         holder?.bind(data[position])
     }
 
-    inner class CatViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class CatViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            catClickListener?.OnClick(v!!, data[adapterPosition].id)
+        }
 
         fun bind(cat: Cat) {
             itemView.catName_cardItem.text = cat.name

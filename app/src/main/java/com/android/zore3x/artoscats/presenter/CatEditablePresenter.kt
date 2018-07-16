@@ -24,4 +24,12 @@ class CatEditablePresenter: MvpPresenter<ICatEditableView>() {
                             viewState.close()} )
     }
 
+    fun loadCat(catId: Int) {
+        App.catsApi.getCat(catId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { viewState.showCat(it)},
+                        {viewState.showMessage(it.localizedMessage)})
+    }
 }
