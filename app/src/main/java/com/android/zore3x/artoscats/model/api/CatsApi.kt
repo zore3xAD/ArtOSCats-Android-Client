@@ -1,5 +1,6 @@
 package com.android.zore3x.artoscats.model.api
 
+import com.android.zore3x.artoscats.model.Cat
 import com.android.zore3x.artoscats.model.endpoints.CatsEndpoint
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -21,4 +22,6 @@ class CatsApi() {
     fun getAllCats() = catsService.getAllCats();
 
     fun getCat(catId: Int) = catsService.getCat(catId)
+
+    fun saveCat(cat: Cat) = catsService.saveCat(cat.name, cat.age);
 }

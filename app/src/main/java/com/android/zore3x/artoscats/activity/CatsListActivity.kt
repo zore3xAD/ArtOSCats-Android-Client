@@ -32,12 +32,16 @@ class CatsListActivity : MvpAppCompatActivity(), ICatListView {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            startActivity(EditableCatActivity.getIntent(applicationContext))
         }
 
         catList_recyclerView.layoutManager = LinearLayoutManager(applicationContext)
         catList_recyclerView.adapter = adapter
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         presenter.loadData()
     }
 

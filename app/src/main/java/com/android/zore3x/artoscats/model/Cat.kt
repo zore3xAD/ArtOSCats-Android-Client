@@ -4,9 +4,12 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class Cat(
+        @Expose
         @SerializedName("id")
         var id: Int,
         @SerializedName("name")
         var name: String,
         @SerializedName("age")
-        var age: Int)
+        var age: Int) {
+        constructor(name: String, age: Int) : this(1, name, age)
+}

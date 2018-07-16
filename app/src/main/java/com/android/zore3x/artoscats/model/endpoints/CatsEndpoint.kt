@@ -1,16 +1,23 @@
 package com.android.zore3x.artoscats.model.endpoints
 
 import com.android.zore3x.artoscats.model.Cat
+import io.reactivex.Completable
+import io.reactivex.CompletableObserver
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.disposables.Disposable
 import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Query
 import java.util.*
 
 interface CatsEndpoint {
 
     @GET("all")
-
     fun getAllCats(): Observable<MutableList<Cat>>
+    @GET("getCat")
     fun getCat(@Query("catId") catId: Int): Single<Cat>
+    @POST("insert")
+    fun saveCat(@Query("name") name: String, @Query("age") age: Int): Completable
 }
