@@ -15,21 +15,10 @@ import kotlinx.android.synthetic.main.activity_editable_cat.*
 
 class EditableCatActivity : MvpAppCompatActivity(), ICatEditableView {
 
-    override fun close() {
-        finish()
-    }
-
-    override fun showCat(cat: Cat) {
-        editableCatAge_editText.setText(cat.age.toString())
-        editableCatName_editText.setText(cat.name)
-    }
-
-    override fun showMessage(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-    }
-
     @InjectPresenter
     lateinit var presenter: CatEditablePresenter
+
+    var isEditable = false
 
     companion object {
         val EXTRA_CAT_ID = "com.android.zore3x.artoscats.extra_cat_id"
@@ -46,11 +35,29 @@ class EditableCatActivity : MvpAppCompatActivity(), ICatEditableView {
         setContentView(R.layout.activity_editable_cat)
 
         if(intent.hasExtra(EXTRA_CAT_ID)) {
+            isEditable = true
             presenter.loadCat(intent.getIntExtra(EXTRA_CAT_ID, -1))
         }
 
-        editableSave_button.setOnClickListener { presenter.saveCat(
-                Cat(editableCatName_editText.text.toString(),
-                        editableCatAge_editText.text.toString().toInt())) }
+        editableSave_button.setOnClickListener {
+            if (!isEditable) {
+                presenter.saveCat(
+                        Cat(editableCatName_editText.text.toString(),
+                                editableCatAge_editText.text.toString().toInt()))
+            }
+        }
+    }
+
+    override fun close() {
+        finish()
+    }
+
+    override fun showCat(cat: Cat) {
+        editableCatAge_editText.setText(cat.age.toString())
+        editableCatName_editText.setText(cat.name)
+    }
+
+    override fun showMessage(message: String) {
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 }

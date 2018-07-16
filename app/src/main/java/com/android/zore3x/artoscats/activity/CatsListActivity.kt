@@ -65,8 +65,4 @@ class CatsListActivity : MvpAppCompatActivity(), ICatListView {
     override fun hideProgress() {
         progressBar.visibility = GONE
     }
-
-    override fun openCatInformationActivity(catId: Int) {
-        startActivity(CatInformationActivity.getIntent(applicationContext, catId))
-    }
 }

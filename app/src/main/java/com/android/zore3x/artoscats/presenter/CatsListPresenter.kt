@@ -21,8 +21,4 @@ class CatsListPresenter: MvpPresenter<ICatListView>() {
                         { viewState.hideProgress()},
                         { viewState.showProgress()})
     }
-
-    fun openInformationAboutCat(cat: Cat) {
-        viewState.openCatInformationActivity(cat.id)
-    }
 }
