@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Cat(
         @SerializedName("id")
-        var id: Integer,
+        var id: Int,
         @SerializedName("name")
         var name: String,
         @SerializedName("age")
-        var age: Integer)
+        var age: Int)
