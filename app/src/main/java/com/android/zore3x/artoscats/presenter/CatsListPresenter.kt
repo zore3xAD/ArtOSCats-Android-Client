@@ -1,6 +1,7 @@
 package com.android.zore3x.artoscats.presenter
 
 import com.android.zore3x.artoscats.App
+import com.android.zore3x.artoscats.model.Cat
 import com.android.zore3x.artoscats.view.ICatListView
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
@@ -19,5 +20,9 @@ class CatsListPresenter: MvpPresenter<ICatListView>() {
                         { viewState.showMessage(it.localizedMessage) },
                         { viewState.hideProgress()},
                         { viewState.showProgress()})
+    }
+
+    fun openInformationAboutCat(cat: Cat) {
+        viewState.openCatInformationActivity(cat.id)
     }
 }

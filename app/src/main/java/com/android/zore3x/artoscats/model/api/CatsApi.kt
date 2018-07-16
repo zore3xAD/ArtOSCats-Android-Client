@@ -19,4 +19,6 @@ class CatsApi() {
     private val catsService = retrofit.create(CatsEndpoint::class.java);
 
     fun getAllCats() = catsService.getAllCats();
+
+    fun getCat(catId: Int) = catsService.getCat(catId)
 }

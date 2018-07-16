@@ -9,4 +9,5 @@ interface ICatListView : MvpView {
     fun showCats(data: MutableList<Cat>)
     fun showProgress()
     fun hideProgress()
+    fun openCatInformationActivity(catId: Int)
 }
