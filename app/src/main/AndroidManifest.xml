@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.EditableCatActivity">
+        <activity android:name=".activity.EditableCatActivity"
+            android:parentActivityName=".activity.CatsListActivity">
         </activity>
     </application>
 
