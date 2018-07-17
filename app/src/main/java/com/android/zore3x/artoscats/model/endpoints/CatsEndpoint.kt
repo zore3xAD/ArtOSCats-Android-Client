@@ -15,9 +15,21 @@ import java.util.*
 interface CatsEndpoint {
 
     @GET("all")
-    fun getAllCats(): Observable<MutableList<Cat>>
+    fun getAllCats()
+            : Observable<MutableList<Cat>>
+
     @GET("getCat")
-    fun getCat(@Query("catId") catId: Int): Single<Cat>
+    fun getCat(@Query("catId") catId: Long)
+            : Single<Cat>
+
     @POST("insert")
-    fun saveCat(@Query("name") name: String, @Query("age") age: Int): Completable
+    fun saveCat(@Query("name") name: String,
+                @Query("age") age: Int)
+            : Completable
+
+    @PUT("update")
+    fun updateCat(@Query("catId") catId: Long,
+                  @Query("name") name: String,
+                  @Query("age") age: Int)
+            : Completable
 }

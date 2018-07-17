@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class Cat(
         @Expose
         @SerializedName("id")
-        var id: Int,
+        var id: Long,
         @SerializedName("name")
         var name: String,
         @SerializedName("age")

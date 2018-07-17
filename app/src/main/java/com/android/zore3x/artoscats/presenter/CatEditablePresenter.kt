@@ -24,12 +24,25 @@ class CatEditablePresenter: MvpPresenter<ICatEditableView>() {
                             viewState.close()} )
     }
 
-    fun loadCat(catId: Int) {
+    fun loadCat(catId: Long) {
         App.catsApi.getCat(catId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { viewState.showCat(it)},
+                        { viewState.showCat(it) },
                         {viewState.showMessage(it.localizedMessage)})
+    }
+
+    fun updateCat(cat: Cat) {
+        App.catsApi.updateCat(cat)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            viewState.showMessage("Update")
+                            viewState.close()},
+                        {
+                            viewState.showMessage("Error")
+                            viewState.close()})
     }
 }

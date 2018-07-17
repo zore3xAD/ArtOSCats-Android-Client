@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.card_item_cats.view.*
 class CatAdapter : RecyclerView.Adapter<CatAdapter.CatViewHolder>() {
 
     interface CatClickListener {
-        fun OnClick(view: View, position: Int)
+        fun OnClick(view: View, position: Long)
     }
 
     var catClickListener: CatClickListener? = null

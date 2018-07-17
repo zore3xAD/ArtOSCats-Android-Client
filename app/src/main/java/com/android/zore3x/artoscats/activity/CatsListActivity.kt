@@ -36,7 +36,7 @@ class CatsListActivity : MvpAppCompatActivity(), ICatListView {
             startActivity(EditableCatActivity.getIntent(applicationContext))
         }
         adapter.setOnClickListener(object : CatAdapter.CatClickListener {
-            override fun OnClick(view: View, position: Int) {
+            override fun OnClick(view: View, position: Long) {
                 startActivity(EditableCatActivity.getIntent(applicationContext, position))
             }
         })

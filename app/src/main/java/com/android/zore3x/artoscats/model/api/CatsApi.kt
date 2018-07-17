@@ -21,7 +21,9 @@ class CatsApi() {
 
     fun getAllCats() = catsService.getAllCats();
 
-    fun getCat(catId: Int) = catsService.getCat(catId)
+    fun getCat(catId: Long) = catsService.getCat(catId)
 
-    fun saveCat(cat: Cat) = catsService.saveCat(cat.name, cat.age);
+    fun saveCat(cat: Cat) = catsService.saveCat(cat.name, cat.age)
+
+    fun updateCat(cat: Cat) = catsService.updateCat(cat.id, cat.name, cat.age)
 }

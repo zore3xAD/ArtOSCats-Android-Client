@@ -15,15 +15,15 @@ import kotlinx.android.synthetic.main.activity_editable_cat.*
 
 class EditableCatActivity : MvpAppCompatActivity(), ICatEditableView {
 
+    var catId: Long = -1
     @InjectPresenter
     lateinit var presenter: CatEditablePresenter
 
     var isEditable = false
-
     companion object {
         val EXTRA_CAT_ID = "com.android.zore3x.artoscats.extra_cat_id"
         fun getIntent(context: Context) = Intent(context, EditableCatActivity::class.java)
-        fun getIntent(context: Context, catId: Int): Intent {
+        fun getIntent(context: Context, catId: Long): Intent {
             val intent = Intent(context, EditableCatActivity::class.java)
             intent.putExtra(EXTRA_CAT_ID, catId)
             return intent
@@ -36,7 +36,8 @@ class EditableCatActivity : MvpAppCompatActivity(), ICatEditableView {
 
         if(intent.hasExtra(EXTRA_CAT_ID)) {
             isEditable = true
-            presenter.loadCat(intent.getIntExtra(EXTRA_CAT_ID, -1))
+            catId = intent.getLongExtra(EXTRA_CAT_ID, -1)
+            presenter.loadCat(catId)
         }
 
         editableSave_button.setOnClickListener {
@@ -44,6 +45,10 @@ class EditableCatActivity : MvpAppCompatActivity(), ICatEditableView {
                 presenter.saveCat(
                         Cat(editableCatName_editText.text.toString(),
                                 editableCatAge_editText.text.toString().toInt()))
+            } else {
+                presenter.updateCat(Cat(catId,
+                        editableCatName_editText.text.toString(),
+                        editableCatAge_editText.text.toString().toInt()))
             }
         }
     }
