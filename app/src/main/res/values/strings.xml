@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ArtOS cats</string>
     <string name="title_activity_cats_list">CatsListActivity</string>
+    <string name="hint_insert_cat_name">Insert cat name</string>
+    <string name="hint_insert_cat_age">Insert cat age</string>
+    <string name="button_save">Save</string>
+    <string name="menu_item_delete">Delete</string>
 </resources>
