@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import com.android.zore3x.artoscats.R
 import com.android.zore3x.artoscats.model.Cat
@@ -51,6 +55,21 @@ class EditableCatActivity : MvpAppCompatActivity(), ICatEditableView {
                         editableCatAge_editText.text.toString().toInt()))
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_editable, menu)
+        if(isEditable) {
+            menu?.findItem(R.id.action_delete)?.isVisible = true
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if(item?.itemId == R.id.action_delete) {
+            presenter.deleteCat(catId)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun close() {

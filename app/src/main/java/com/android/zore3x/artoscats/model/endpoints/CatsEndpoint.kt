@@ -6,10 +6,7 @@ import io.reactivex.CompletableObserver
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Query
+import retrofit2.http.*
 import java.util.*
 
 interface CatsEndpoint {
@@ -31,5 +28,9 @@ interface CatsEndpoint {
     fun updateCat(@Query("catId") catId: Long,
                   @Query("name") name: String,
                   @Query("age") age: Int)
+            : Completable
+
+    @DELETE("delete")
+    fun deleteCat(@Query("catId") catId: Long)
             : Completable
 }

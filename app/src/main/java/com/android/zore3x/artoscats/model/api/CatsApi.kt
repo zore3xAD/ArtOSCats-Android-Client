@@ -26,4 +26,6 @@ class CatsApi() {
     fun saveCat(cat: Cat) = catsService.saveCat(cat.name, cat.age)
 
     fun updateCat(cat: Cat) = catsService.updateCat(cat.id, cat.name, cat.age)
+
+    fun deleteCat(catId: Long) = catsService.deleteCat(catId)
 }

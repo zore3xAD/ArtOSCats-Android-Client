@@ -44,5 +44,20 @@ class CatEditablePresenter: MvpPresenter<ICatEditableView>() {
                         {
                             viewState.showMessage("Error")
                             viewState.close()})
+
+    }
+
+    fun deleteCat(catId: Long) {
+        App.catsApi.deleteCat(catId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            viewState.showMessage("Delete")
+                            viewState.close()},
+                        {
+                            viewState.showMessage("Error")
+                            viewState.close()}
+                )
     }
 }
